@@ -6,9 +6,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.todoItems = [
-      'di choi',
-      'di an',
-      'di uong'
+      { title: 'di choi', isCompleted: true },
+      { title: 'di an' }, 
+      { title: 'di uong'}
     ];
   }
   
@@ -16,7 +16,9 @@ class App extends React.Component {
     return (
       <div className="App">
         {
-          this.todoItems.map((item, index) => <TodoItem key={index} title={item} />)
+          this.todoItems.map((item, index) => 
+            <TodoItem key={index} item={item} />
+          )
         }
       </div>
     );
