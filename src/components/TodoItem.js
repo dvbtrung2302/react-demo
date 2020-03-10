@@ -1,11 +1,13 @@
 import React from 'react';
 
-function TodoItem() {
-  return(
-    <div className="TodoItem">
-      <p>Di choi</p>
-    </div>
-  );
+class TodoItem extends React.Component {
+  render() {
+    return(
+      <div className="TodoItem">
+        <p>{this.props.title}</p>
+      </div>
+    );
+  }
 }
 
 export default TodoItem;

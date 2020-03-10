@@ -8,7 +8,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <TodoItem />
+        <TodoItem title="di choi" />
+        <TodoItem title="di an" />
+        <TodoItem title="di uong" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
