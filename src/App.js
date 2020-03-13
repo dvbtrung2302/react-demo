@@ -3,8 +3,8 @@ import './App.css';
 import TodoItem from './components/TodoItem';
 
 class App extends React.Component {
-  constructor(state) {
-    super(state);
+  constructor() {
+    super();
     this.state = {
       todoItems: [
         { title: 'di choi', isCompleted: true },
@@ -12,17 +12,23 @@ class App extends React.Component {
         { title: 'di uong'}
       ]
     };
-    this.onItemClicked = this.onItemClicked.bind(this);
   }
   
-  onItemClicked(event) {
-    event.persist();
-    const id = parseInt(event.currentTarget.dataset.id);
-    const todoItems = [...this.state.todoItems];
-    const itemClicked = todoItems.find((item, index) => index === id);
-    itemClicked.isCompleted = !itemClicked.isCompleted;
-    todoItems[id] = itemClicked;
-    this.setState({todoItems});
+  onItemClicked(item) {
+    return (event) => { 
+      const { todoItems } = {...this.state};
+      const isCompleted = item.isCompleted;
+      this.setState({
+        todoItems: todoItems.map(value => {
+          if (value === item) {
+            return {...value, isCompleted: !isCompleted};
+          } else {
+            return {...value};
+          }
+        })
+      })
+    };
+
   }
 
   render() {
@@ -31,7 +37,7 @@ class App extends React.Component {
       <div className="App">
         {
           todoItems.length > 0 && todoItems.map((item, index) => 
-            <TodoItem key={index} item={item} onClick={this.onItemClicked} dataId={index}/>
+            <TodoItem key={index} item={item} onClick={this.onItemClicked(item)}/>
           )
         }
         {
